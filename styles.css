@@ -1,43 +1,96 @@
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(#001d3d, #003566);
+  font-family: Arial, sans-serif;
 }
 
 #game-container {
-    position: relative;
-    width: 400px;
-    height: 600px;
-    background-color: #fff;
-    border: 2px solid #000;
-    overflow: hidden;
+  position: relative;
+  width: 420px;
+  height: 620px;
+  background: radial-gradient(circle at bottom, #2e7d32 0, #1b5e20 40%, #0b3d0b 100%);
+  border: 3px solid #cddc39;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
-#basket {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    width: 80px;
-    height: 20px;
-    background-color: #000;
-    transform: translateX(-50%);
+/* Kurbağa */
+#frog {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 90px;
+  height: 40px;
+  background: #66bb6a;
+  border-radius: 40px;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 0 #2e7d32;
 }
 
+#frog::before,
+#frog::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #a5d6a7;
+  border: 2px solid #2e7d32;
+}
+
+#frog::before {
+  left: 16px;
+}
+
+#frog::after {
+  right: 16px;
+}
+
+/* Sinekler */
 .falling-object {
-    position: absolute;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0, #cfd8dc 30%, #90a4ae 60%, #455a64 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
+.falling-object::before,
+.falling-object::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  top: 4px;
+}
+
+.falling-object::before {
+  left: -10px;
+  transform: rotate(-20deg);
+}
+
+.falling-object::after {
+  right: -10px;
+  transform: rotate(20deg);
+}
+
+/* Skor */
 #score-board {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 1px 1px 2px #000;
 }
