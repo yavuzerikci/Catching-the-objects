@@ -16,75 +16,96 @@ body {
   border: 3px solid #cddc39;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-/* Kurbağa */
+/* KURBAĞA */
 #frog {
   position: absolute;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
-  width: 90px;
-  height: 40px;
-  background: #66bb6a;
-  border-radius: 40px;
+  width: 70px;
+  height: 55px;
+  background: #43a047;
+  border-radius: 50% 50% 45% 45%;
   transform: translateX(-50%);
-  box-shadow: 0 4px 0 #2e7d32;
+  border: 3px solid #1b5e20;
+  box-shadow: 0 5px 0 #2e7d32;
 }
 
 #frog::before,
 #frog::after {
   content: "";
   position: absolute;
-  top: -12px;
-  width: 18px;
-  height: 18px;
+  top: -20px;
+  width: 24px;
+  height: 24px;
+  background: white;
   border-radius: 50%;
-  background: #a5d6a7;
-  border: 2px solid #2e7d32;
+  border: 2px solid #1b5e20;
 }
 
-#frog::before {
-  left: 16px;
+#frog::before { left: 10px; }
+#frog::after { right: 10px; }
+
+#frog span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  top: -12px;
 }
 
-#frog::after {
-  right: 16px;
+#frog span.left { left: 18px; }
+#frog span.right { right: 18px; }
+
+#frog .mouth {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 30px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-bottom: 3px solid #1b5e20;
+  border-radius: 0 0 30px 30px;
 }
 
-/* Sinekler */
+/* SİNEK */
 .falling-object {
   position: absolute;
   top: 0;
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle at 30% 30%, #ffffff 0, #cfd8dc 30%, #90a4ae 60%, #455a64 100%);
+  width: 26px;
+  height: 26px;
+  background: #333;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-}
-
-.falling-object::before,
-.falling-object::after {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  top: 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.6);
 }
 
 .falling-object::before {
-  left: -10px;
-  transform: rotate(-20deg);
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 20px;
+  background: #212121;
+  border-radius: 50%;
+  top: 3px;
+  left: 6px;
 }
 
 .falling-object::after {
-  right: -10px;
-  transform: rotate(20deg);
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 14px;
+  background: rgba(200,255,255,0.7);
+  border-radius: 50%;
+  left: -1px;
+  top: -6px;
+  filter: blur(1px);
 }
 
-/* Skor */
+/* SKOR */
 #score-board {
   position: absolute;
   top: 10px;
