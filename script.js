@@ -1,45 +1,77 @@
 const gameContainer = document.getElementById('game-container');
-const basket = document.getElementById('basket');
+const frog = document.getElementById('frog');
 const scoreBoard = document.getElementById('score-board');
 
 let score = 0;
-let basketPosition = gameContainer.offsetWidth / 2 - basket.offsetWidth / 2;
-basket.style.left = basketPosition + 'px';
 
+// Kurbağayı başlangıçta ortala
+let frogPosition = gameContainer.offsetWidth / 2 - frog.offsetWidth / 2;
+frog.style.left = frogPosition + 'px';
+
+// Kurbağayı fare ile sola–sağa hareket ettir
 document.addEventListener('mousemove', (event) => {
-    const gameContainerRect = gameContainer.getBoundingClientRect();
-    let newBasketPosition = event.clientX - gameContainerRect.left - basket.offsetWidth / 2;
-    if (newBasketPosition < 0) newBasketPosition = 0;
-    if (newBasketPosition + basket.offsetWidth > gameContainerRect.width) newBasketPosition = gameContainerRect.width - basket.offsetWidth;
-    basket.style.left = newBasketPosition + 'px';
+  const rect = gameContainer.getBoundingClientRect();
+  let newPos = event.clientX - rect.left - frog.offsetWidth / 2;
+
+  if (newPos < 0) newPos = 0;
+  if (newPos + frog.offsetWidth > rect.width) {
+    newPos = rect.width - frog.offsetWidth;
+  }
+
+  frog.style.left = newPos + 'px';
 });
 
-function createFallingObject() {
-    const fallingObject = document.createElement('div');
-    fallingObject.classList.add('falling-object');
-    fallingObject.style.left = Math.random() * (gameContainer.offsetWidth - 20) + 'px';
-    gameContainer.appendChild(fallingObject);
+// Skoru güncelle, renklere ufak efekt ver
+function updateScore(points) {
+  score += points;
+  scoreBoard.innerText = 'Skor: ' + score;
 
-    let fallingInterval = setInterval(() => {
-        let topPosition = parseInt(window.getComputedStyle(fallingObject).getPropertyValue('top'));
-        if (topPosition >= gameContainer.offsetHeight - basket.offsetHeight - 20) {
-            let basketRect = basket.getBoundingClientRect();
-            let fallingObjectRect = fallingObject.getBoundingClientRect();
-            if (
-                fallingObjectRect.left < basketRect.right &&
-                fallingObjectRect.right > basketRect.left &&
-                fallingObjectRect.bottom >= basketRect.top &&
-                fallingObjectRect.top <= basketRect.bottom
-            ) {
-                score++;
-                scoreBoard.innerText = 'Score: ' + score;
-            }
-            clearInterval(fallingInterval);
-            gameContainer.removeChild(fallingObject);
-        } else {
-            fallingObject.style.top = topPosition + 5 + 'px';
-        }
-    }, 50);
+  if (score < 10) {
+    scoreBoard.style.color = '#ffeb3b';
+  } else if (score < 20) {
+    scoreBoard.style.color = '#ff9800';
+  } else {
+    scoreBoard.style.color = '#ff5722';
+  }
 }
 
-setInterval(createFallingObject, 1000);
+// Sinek oluştur
+function createFly() {
+  const fly = document.createElement('div');
+  fly.classList.add('falling-object');
+
+  fly.style.left =
+    Math.random() * (gameContainer.offsetWidth - 24) + 'px';
+
+  gameContainer.appendChild(fly);
+
+  let fallingInterval = setInterval(() => {
+    let topPosition = parseInt(
+      window.getComputedStyle(fly).getPropertyValue('top') || '0',
+      10
+    );
+
+    if (topPosition >= gameContainer.offsetHeight - frog.offsetHeight - 30) {
+      const frogRect = frog.getBoundingClientRect();
+      const flyRect = fly.getBoundingClientRect();
+
+      const isColliding =
+        flyRect.left < frogRect.right &&
+        flyRect.right > frogRect.left &&
+        flyRect.bottom >= frogRect.top &&
+        flyRect.top <= frogRect.bottom;
+
+      if (isColliding) {
+        updateScore(2); // her sinek 2 puan
+      }
+
+      clearInterval(fallingInterval);
+      gameContainer.removeChild(fly);
+    } else {
+      fly.style.top = topPosition + 5 + 'px';
+    }
+  }, 50);
+}
+
+// Düzenli aralıklarla sinek düşür
+setInterval(createFly, 900);
