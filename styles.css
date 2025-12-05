@@ -19,93 +19,31 @@ body {
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-/* KURBAĞA */
+/* Kurbağa */
 #frog {
   position: absolute;
   bottom: 18px;
   left: 50%;
   width: 70px;
-  height: 55px;
-  background: #43a047;
-  border-radius: 50% 50% 45% 45%;
+  height: 60px;
   transform: translateX(-50%);
-  border: 3px solid #1b5e20;
-  box-shadow: 0 5px 0 #2e7d32;
+  background-image: url('img/frog.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-#frog::before,
-#frog::after {
-  content: "";
-  position: absolute;
-  top: -20px;
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 50%;
-  border: 2px solid #1b5e20;
-}
-
-#frog::before { left: 10px; }
-#frog::after { right: 10px; }
-
-#frog span {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: black;
-  border-radius: 50%;
-  top: -12px;
-}
-
-#frog span.left { left: 18px; }
-#frog span.right { right: 18px; }
-
-#frog .mouth {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  width: 30px;
-  height: 12px;
-  transform: translateX(-50%);
-  border-bottom: 3px solid #1b5e20;
-  border-radius: 0 0 30px 30px;
-}
-
-/* SİNEK */
+/* Sinek */
 .falling-object {
   position: absolute;
   top: 0;
   width: 26px;
   height: 26px;
-  background: #333;
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(0,0,0,0.6);
+  background-image: url('img/fly.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.falling-object::before {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 20px;
-  background: #212121;
-  border-radius: 50%;
-  top: 3px;
-  left: 6px;
-}
-
-.falling-object::after {
-  content: "";
-  position: absolute;
-  width: 28px;
-  height: 14px;
-  background: rgba(200,255,255,0.7);
-  border-radius: 50%;
-  left: -1px;
-  top: -6px;
-  filter: blur(1px);
-}
-
-/* SKOR */
+/* Skor */
 #score-board {
   position: absolute;
   top: 10px;
