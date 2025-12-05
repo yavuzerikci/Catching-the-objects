@@ -5,11 +5,11 @@ const eatSound = document.getElementById('eat-sound');
 
 let score = 0;
 
-// Başlangıçta kurbağayı ortala
+// Başlangıçta ortala
 let frogPosition = gameContainer.offsetWidth / 2 - frog.offsetWidth / 2;
 frog.style.left = frogPosition + 'px';
 
-// Fare ile sola sağa hareket ettir
+// Fare ile kontrol
 document.addEventListener('mousemove', (event) => {
   const rect = gameContainer.getBoundingClientRect();
   let newPos = event.clientX - rect.left - frog.offsetWidth / 2;
@@ -26,13 +26,9 @@ document.addEventListener('mousemove', (event) => {
 function updateScore() {
   score += 2;
   scoreBoard.innerText = 'Skor: ' + score;
-
-  if (score < 10) scoreBoard.style.color = '#ffeb3b';
-  else if (score < 20) scoreBoard.style.color = '#ff9800';
-  else scoreBoard.style.color = '#ff5722';
 }
 
-// Sinek oluştur
+// Sinek üret
 function createFly() {
   const fly = document.createElement('div');
   fly.classList.add('falling-object');
@@ -54,8 +50,8 @@ function createFly() {
 
       if (hit) {
         updateScore();
-        eatSound.currentTime = 0; // sesi en baştan başlat
-        eatSound.play();         // 🔊 ses efekti
+        eatSound.currentTime = 0;
+        eatSound.play();
       }
 
       clearInterval(fallingInterval);
@@ -66,5 +62,4 @@ function createFly() {
   }, 50);
 }
 
-// Düzenli sinek düşür
 setInterval(createFly, 900);
